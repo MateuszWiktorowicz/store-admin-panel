@@ -15,6 +15,7 @@ class ProductController extends AbstractController
     {
         return $this->render('product/index.html.twig', [
             'products' => $products->findAll(),
+            'productCount' => $products->count()
         ]);
     }
 }
