@@ -1,0 +1,43 @@
+{% block body %}
+<header class="py-3 mb-3 border-bottom">
+    <div class="container-fluid d-flex gap-3 align-items-center justify-content-end">
+      <div class="dropdown d-sm-none">
+        <a href="#" class="d-flex align-items-end col-lg-4 pt-2 mb-2 mb-lg-0 link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-bars" style="font-size: 30px;"></i>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li><a class="dropdown-item active" href="#" aria-current="page">Dashboard</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Products</a></li>
+          <li><a class="dropdown-item" href="#">Producers</a></li>
+          <li><a class="dropdown-item" href="#">Stock</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Order List</a></li>
+          <li><a class="dropdown-item" href="#">Discount Groups</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Customer List</a></li>
+          <li><a class="dropdown-item" href="#">Customer Groups</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <form class="w-100 me-3" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#"></a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
