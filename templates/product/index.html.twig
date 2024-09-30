@@ -1,0 +1,11 @@
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
+
+{% block title %}Products{% endblock %}
+{% block bread %}
+ &#8594; Products
+{% endblock %}
+{% block content %}
+
+{{ include('/product/_list.html.twig') }}
+
+{% endblock %}

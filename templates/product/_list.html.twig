@@ -1,0 +1,30 @@
+{% block body %}
+<table class="table mt-5 p-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Producer</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Netto Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products %}
+  {% if products|length > 0 %}
+    <tr>
+      <th scope="row"> 1 </th>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.producer.name }}</td>
+      <td>{{ product.stock }}</td>
+      <td>{{ product.price }}</td>
+      <td>Actions</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,18 @@
+body {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.bg-primary {
+    background-color: #334b49 !important;
+}
+
+.bg-secondary {
+    background-color: #95b1ae !important;
+}
+
+.list-group-item:hover {
+    background-color: #334b49 !important;
+    color: white;
+}
+
