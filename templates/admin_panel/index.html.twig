@@ -3,5 +3,18 @@
 {% block title %}Admin Panel!{% endblock %}
 
 {% block body %}
+<main>
+
+<section class="d-flex">
+<div class="col-3">{{ include('/admin_panel/_side_menu.html.twig') }}</div>
+<div class="col-9 d-flex flex-column">
 <div class="px-5">This is admin panel<div>
+<div></div>
+</div>
+
+</section>
+</main>
+
+
+
 {% endblock %}
