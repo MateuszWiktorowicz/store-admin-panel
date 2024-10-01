@@ -54,4 +54,30 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product');
     }
+
+
+    #[Route('/admin-panel/products/{product}/edit', name: 'app_product_edit', priority: 2)]
+    public function edit(
+        Product $product,
+        Request $request,
+        ProductRepository $products
+    ): Response {
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product = $form->getData();
+            $products->add($product, true);
+
+            $this->addFlash('success', 'Your product have been added');
+
+            return $this->redirectToRoute('app_product');
+        }
+
+        return $this->render('product/edit.html.twig', [
+            'form' => $form,
+            'product' => $product
+        ]);
+    }
 }

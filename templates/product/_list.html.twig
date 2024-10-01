@@ -34,7 +34,7 @@
       <td>{{ product.stock }}</td>
       <td>{{ product.price }}</td>
       <td>
-          <a class="btn btn-outline-primary me-2"><i class="fas fa-cog"></i> </a>
+          <a class="btn btn-outline-primary me-2" href="{{ path('app_product_edit', {product: product.id}) }}"><i class="fas fa-cog"></i> </a>
           <a class="btn btn-outline-danger" href="{{ path('app_product_delete', {id: product.id}) }}"><i class="fas fa-trash"></i><a/>
 
       </td>
