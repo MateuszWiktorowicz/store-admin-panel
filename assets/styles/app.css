@@ -15,9 +15,12 @@ body {
     background-color: #95b1ae !important;
 }
 
+.list-group-item a {
+    color: inherit; 
+}
 
 .list-group-item:hover {
     background-color: #334b49 !important;
-    color: white;
+    color: white !important;
 }
 

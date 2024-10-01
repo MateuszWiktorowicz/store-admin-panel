@@ -30,7 +30,13 @@
       <th scope="row"> {{ loop.index }} </th>
       <td>{{ product.code }}</td>
       <td>{{ product.name }}</td>
-      <td>{{ product.producer.name }}</td>
+      <td>
+        {% if product.producer is not null %}
+            {{ product.producer.name }}
+        {% else %}
+            No producer assigned
+        {% endif %}
+      </td>
       <td>{{ product.stock }}</td>
       <td>{{ product.price }}</td>
       <td>
