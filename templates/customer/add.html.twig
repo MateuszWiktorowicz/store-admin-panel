@@ -1,0 +1,9 @@
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
+
+{% block title %}Add Customer{% endblock %}
+{% block bread %}
+ &#8594; Customers &#8594; Add Customer
+{% endblock %}
+{% block content %}
+{{ include('customer/_form.html.twig') }}
+{% endblock %}

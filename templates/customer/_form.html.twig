@@ -1,0 +1,38 @@
+{% block content %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div>{{ form_errors(form)}}</div>
+
+<div class="mb-3">
+  {{ form_label(form.email, 'Please enter the email', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+  {% if form.email.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.email.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.password, 'Please enter the password', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+  {% if form.password.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.password.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+
+<div class="mb-3">
+  <button type="submit" class="btn btn-primary w-100">Save!</button>
+</div>
+
+{{ form_end(form) }}
+
+
+{% endblock %}

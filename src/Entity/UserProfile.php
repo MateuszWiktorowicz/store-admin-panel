@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\UserProfileRepository;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserProfileRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserProfileRepository::class)]
+#[UniqueEntity(fields: ['nip'], message: 'This NIP is aready collected')]
 class UserProfile
 {
     #[ORM\Id]
@@ -18,15 +22,26 @@ class UserProfile
     private ?User $user = null;
 
     #[ORM\Column(length: 250, nullable: true)]
+    #[Assert\Length(min: 5, max: 255)]
     private ?string $address = null;
 
     #[ORM\Column(length: 20, nullable: true)]
+    #[Assert\Length(min: 9, max: 9)]
+    #[Assert\Regex(
+        pattern: '/^\d+$/',
+        message: 'The phone number must contain only numbers.'
+    )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $company_name = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min: 10, max: 10)]
+    #[Assert\Regex(
+        pattern: '/^\d+$/',
+        message: 'The NIP must contain exactly 10 digits.'
+    )]
     private ?string $nip = null;
 
     public function getId(): ?int
