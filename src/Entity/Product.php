@@ -41,8 +41,6 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Producer $producer = null;
 
-    #[ORM\ManyToOne(inversedBy: 'product')]
-    private ?OrderItem $orderItem = null;
 
     /**
      * @var Collection<int, OrderItem>
@@ -50,7 +48,7 @@ class Product
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'product')]
     private Collection $orderItems;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\ManyToOne(inversedBy: 'products', fetch: 'EAGER')]
     private ?Discount $discount = null;
 
     public function __construct()
@@ -130,17 +128,6 @@ class Product
         return $this;
     }
 
-    public function getOrderItem(): ?OrderItem
-    {
-        return $this->orderItem;
-    }
-
-    public function setOrderItem(?OrderItem $orderItem): static
-    {
-        $this->orderItem = $orderItem;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, OrderItem>

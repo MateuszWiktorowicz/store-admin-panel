@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\DiscountRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -46,9 +47,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
     private Collection $orders;
 
+    /**
+     * @var Collection<int, AssignedDiscount>
+     */
+    #[ORM\OneToMany(targetEntity: AssignedDiscount::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $assignedDiscounts;
+
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->assignedDiscounts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,6 +176,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($order->getUser() === $this) {
                 $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AssignedDiscount>
+     */
+    public function getAssignedDiscounts(): Collection
+    {
+        return $this->assignedDiscounts;
+    }
+
+    public function addAssignedDiscount(AssignedDiscount $assignedDiscount): static
+    {
+        if (!$this->assignedDiscounts->contains($assignedDiscount)) {
+            $this->assignedDiscounts->add($assignedDiscount);
+            $assignedDiscount->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignedDiscount(AssignedDiscount $assignedDiscount): static
+    {
+        if ($this->assignedDiscounts->removeElement($assignedDiscount)) {
+            // set the owning side to null (unless already changed)
+            if ($assignedDiscount->getUser() === $this) {
+                $assignedDiscount->setUser(null);
             }
         }
 

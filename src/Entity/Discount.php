@@ -24,9 +24,17 @@ class Discount
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'discount')]
     private Collection $products;
 
+    /**
+     * @var Collection<int, AssignedDiscount>
+     */
+    #[ORM\OneToMany(targetEntity: AssignedDiscount::class, mappedBy: 'discount', orphanRemoval: true)]
+    private Collection $assignedDiscounts;
+
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->assignedDiscounts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +85,36 @@ class Discount
             // set the owning side to null (unless already changed)
             if ($product->getDiscount() === $this) {
                 $product->setDiscount(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AssignedDiscount>
+     */
+    public function getAssignedDiscounts(): Collection
+    {
+        return $this->assignedDiscounts;
+    }
+
+    public function addAssignedDiscount(AssignedDiscount $assignedDiscount): static
+    {
+        if (!$this->assignedDiscounts->contains($assignedDiscount)) {
+            $this->assignedDiscounts->add($assignedDiscount);
+            $assignedDiscount->setDiscount($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignedDiscount(AssignedDiscount $assignedDiscount): static
+    {
+        if ($this->assignedDiscounts->removeElement($assignedDiscount)) {
+            // set the owning side to null (unless already changed)
+            if ($assignedDiscount->getDiscount() === $this) {
+                $assignedDiscount->setDiscount(null);
             }
         }
 
