@@ -50,6 +50,9 @@ class Product
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'product')]
     private Collection $orderItems;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Discount $discount = null;
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
@@ -165,6 +168,18 @@ class Product
                 $orderItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDiscount(): ?Discount
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(?Discount $discount): static
+    {
+        $this->discount = $discount;
 
         return $this;
     }

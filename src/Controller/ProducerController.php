@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Discount;
 use App\Entity\Producer;
 use App\Form\ProducerType;
+use App\Repository\DiscountRepository;
 use App\Repository\ProducerRepository;
+use Doctrine\DBAL\Types\TextType;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,5 +89,84 @@ class ProducerController extends AbstractController
         $this->addFlash('success', 'The producer has been deleted.');
 
         return $this->redirectToRoute('app_producer');
+    }
+
+    #[Route('/admin-panel/discounts', name: 'app_discount', priority: 2)]
+    public function discounts(DiscountRepository $discounts): Response
+    {
+        return $this->render('discount/index.html.twig', [
+            'discounts' => $discounts->findAll()
+        ]);
+    }
+
+    #[Route('/admin-panel/discounts/add', name: 'app_discount_add', priority: 2)]
+    public function addDiscount(
+        DiscountRepository $discounts,
+        Request $request
+    ): Response {
+        $discount = new Discount();
+
+        $form = $this->createFormBuilder($discount)
+            ->add('name')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $discount = $form->getData();
+            $discounts->add($discount, true);
+
+            $this->addFlash('success', 'Your producer have been added');
+
+            return $this->redirectToRoute('app_discount');
+        }
+
+        return $this->render('discount/add.html.twig', [
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/admin-panel/discounts/remove/{id}', name: 'app_discount_delete')]
+    public function deleteDiscount(
+        DiscountRepository $discounts,
+        Discount $discount,
+        EntityManagerInterface $entityManager
+    ): Response {
+        foreach ($discount->getProducts() as $product) {
+            $product->setDiscount(null);
+            $entityManager->persist($product);
+        }
+
+        $discounts->remove($discount, true);
+        $this->addFlash('success', 'The discount has been deleted.');
+
+        return $this->redirectToRoute('app_discount');
+    }
+
+    #[Route('/admin-panel/discounts/edit/{id}', name: 'app_discount_edit')]
+    public function editDiscount(
+        DiscountRepository $discounts,
+        Discount $discount,
+        Request $request
+    ): Response {
+        $form = $this->createFormBuilder($discount)
+            ->add('name')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $discount = $form->getData();
+            $discounts->add($discount, true);
+
+            $this->addFlash('success', 'Your producer have been added');
+
+            return $this->redirectToRoute('app_discount');
+        }
+
+        return $this->render('discount/edit.html.twig', [
+            'form' => $form,
+            'products' => $discount->getProducts()
+        ]);
     }
 }

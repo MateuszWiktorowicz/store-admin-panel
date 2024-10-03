@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\OrderItem;
+use App\Entity\Discount;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<OrderItem>
+ * @extends ServiceEntityRepository<Discount>
  */
-class OrderItemRepository extends ServiceEntityRepository
+class DiscountRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OrderItem::class);
+        parent::__construct($registry, Discount::class);
     }
 
-    public function add(OrderItem $entity, bool $flush = false): void
+    public function add(Discount $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -25,7 +25,7 @@ class OrderItemRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(OrderItem $entity, bool $flush = false): void
+    public function remove(Discount $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -33,26 +33,25 @@ class OrderItemRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
     //    /**
-    //     * @return OrderItem[] Returns an array of OrderItem objects
+    //     * @return Discount[] Returns an array of Discount objects
     //     */
     //    public function findByExampleField($value): array
     //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
+    //        return $this->createQueryBuilder('d')
+    //            ->andWhere('d.exampleField = :val')
     //            ->setParameter('val', $value)
-    //            ->orderBy('o.id', 'ASC')
+    //            ->orderBy('d.id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
     //            ->getResult()
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?OrderItem
+    //    public function findOneBySomeField($value): ?Discount
     //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
+    //        return $this->createQueryBuilder('d')
+    //            ->andWhere('d.exampleField = :val')
     //            ->setParameter('val', $value)
     //            ->getQuery()
     //            ->getOneOrNullResult()

@@ -1,0 +1,14 @@
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
+
+{% block title %}Add Discount{% endblock %}
+{% block bread %}
+ &#8594; Discounts  &#8594; Add discount
+{% endblock %}
+{% block content %}
+{{ form_start(form) }}
+{{ form_row(form.name) }}
+    <button type="submit" class="btn btn-primary w-100">Edit discount group!</button>
+{{ form_end(form) }}
+
+{{ include('product/_list.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
+
+{% block title %}Discounts{% endblock %}
+{% block bread %}
+ &#8594; Discounts
+{% endblock %}
+{% block content %}
+
+{{ include('/discount/_list.html.twig') }}
+
+{% endblock %}
