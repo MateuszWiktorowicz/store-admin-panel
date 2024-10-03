@@ -1,0 +1,29 @@
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
+
+{% block title %}Add Order{% endblock %}
+{% block bread %}
+ &#8594; Orders  &#8594; Add order
+{% endblock %}
+{% block content %}
+{{ form_start(form) }}
+{{form_row(form.user)}}
+<div class="orderItems"
+    data-index="{{ form.orderItems|length > 0 ? form.orderItems|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_widget(form.orderItems.vars.prototype)|e('html_attr') }}">
+    {% for orderItem in form.orderItems %}
+    <div class="card text-white bg-success mb-3">
+        <div class="card-header">Order Item</div>
+        <div class="card-body">
+            <h5 class="card-title">{{orderItem.vars.value.product.name}}</h5>
+            {{ form_row(orderItem) }}
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    <button type="button" class="add_item_link btn btn-primary" data-collection-holder-class="orderItems">Add a order item</button>
+    <div class="mb-3">
+  <button type="submit" class="btn btn-primary w-100">Save!</button>
+</div>
+{{ form_end(form) }}
+
+{% endblock %}

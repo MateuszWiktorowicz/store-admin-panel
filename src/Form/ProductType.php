@@ -20,7 +20,7 @@ class ProductType extends AbstractType
             ->add('price')
             ->add('producer', EntityType::class, [
                 'class' => Producer::class,
-                'choice_label' => 'name',
+                'choice_label' => 'name'
             ])
         ;
     }
