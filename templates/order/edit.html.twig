@@ -1,0 +1,34 @@
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
+
+{% block title %}Edit Order{% endblock %}
+{% block bread %}
+ &#8594; Orders &#8594; Edit Order
+{% endblock %}
+{% block content %}
+
+{{ form_start(form) }}
+{{ form_label(form.user) }}
+{{ form_widget(form.user) }}
+    <h2>Order Items</h2>
+  {% for orderItem in form.orderItems %}
+{# <div class="mb-3">
+  {{ form_label(orderItem, 'Please enter the user name', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(orderItem, {'attr': {'class': 'form-control'}}) }}
+  {% if orderItem.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in orderItem.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div> #}
+
+{{ form_row(orderItem.quantity) }}
+{{ form_row(orderItem.product) }}
+
+{% endfor %}
+    <button class="btn btn-success">Save</button>
+
+{{ form_end(form) }}
+
+{% endblock %}

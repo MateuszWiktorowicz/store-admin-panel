@@ -1,3 +1,26 @@
 body {
-    background-color: skyblue;
+    width: 98%;
+    margin: 0 auto;
 }
+
+.bg-primary {
+    background-color: #334b49 !important;
+}
+
+.bg-section {
+    background-color:#8b72722b !important;
+}
+
+.bg-secondary {
+    background-color: #95b1ae !important;
+}
+
+.list-group-item a {
+    color: inherit; 
+}
+
+.list-group-item:hover {
+    background-color: #334b49 !important;
+    color: white !important;
+}
+

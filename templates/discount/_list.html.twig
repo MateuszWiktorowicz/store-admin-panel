@@ -1,0 +1,37 @@
+{% block body %}
+
+<div class="d-flex justify-content-between">
+<div>Total discounts: {{ discounts|length }}</div>
+<div>
+<a class="btn btn-outline-light text-decoration-none" href="{{ path('app_discount_add') }}">Add discount</a>
+</div>
+</div>
+<table class="table table-striped table-hover table-bordered table-sm border-success mt-5 p-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Products</th>
+      <th scope="col">Customers</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for discount in discounts %}
+  {% if discounts|length > 0 %}
+    <tr>
+      <th scope="row"> {{ loop.index }} </th>
+      <td>{{ discount.name }}</td>
+      <td>{{ discount.products.count }}</td>
+      <td>{{ discount.assignedDiscounts.count }}</td>
+      <td>
+        {# <a class="btn btn-outline-primary me-2" href="{{ path('app_discount_assign', {id: discount.id}) }}"><i class="fas fa-user"></i> </a>#}
+        <a class="btn btn-outline-primary me-2" href="{{ path('app_discount_edit', {id: discount.id}) }}"><i class="fas fa-cog"></i> </a>
+        <a class="btn btn-outline-danger" href="{{ path('app_discount_delete', {id: discount.id}) }}"><i class="fas fa-trash"></i><a/> 
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

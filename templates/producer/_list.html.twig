@@ -1,0 +1,40 @@
+{% block body %}
+
+<div class="d-flex justify-content-between">
+<div>Total producers: {{ producersCount }} </div>
+<div>
+  <form class="w-100 me-3" role="search">
+      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    </form>
+</div>
+<div>
+<a class="btn btn-outline-light text-decoration-none" href="{{ path('app_producer_add') }}">Add producer</a>
+</div>
+</div>
+<table class="table table-striped table-hover table-bordered table-sm border-success mt-5 p-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Products</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for producer in producers %}
+  {% if producers|length > 0 %}
+    <tr>
+      <th scope="row"> {{ loop.index }} </th>
+      <td>{{ producer.name }}</td>
+      <td>{{ producer.products.count }}</td>
+      <td>
+          <a class="btn btn-outline-primary me-2" href="{{ path('app_producer_edit', {producer: producer.id}) }}"><i class="fas fa-cog"></i> </a>
+          <a class="btn btn-outline-danger" href="{{ path('app_producer_delete', {id: producer.id}) }}"><i class="fas fa-trash"></i><a/>
+
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

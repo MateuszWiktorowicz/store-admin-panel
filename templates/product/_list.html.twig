@@ -1,0 +1,49 @@
+{% block body %}
+
+<table class="table table-striped table-hover table-bordered table-sm border-success mt-5 p-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Producer</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Discount group</th>
+      <th scope="col">Netto Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products %}
+  {% if products|length > 0 %}
+    <tr>
+      <th scope="row"> {{ loop.index }} </th>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>
+        {% if product.producer is not null %}
+            {{ product.producer.name }}
+        {% else %}
+            -
+        {% endif %}
+      </td>
+      <td>{{ product.stock }}</td>
+      <td>
+        {% if product.discount is not null %}
+            {{ product.discount.name }}
+        {% else %}
+            -
+        {% endif %}
+      </td>
+      <td>{{ product.price }}</td>
+      <td>
+          <a class="btn btn-outline-primary me-2" href="{{ path('app_product_edit', {product: product.id}) }}"><i class="fas fa-cog"></i> </a>
+          <a class="btn btn-outline-danger" href="{{ path('app_product_delete', {id: product.id}) }}"><i class="fas fa-trash"></i><a/>
+
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

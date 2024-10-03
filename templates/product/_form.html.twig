@@ -1,0 +1,85 @@
+{% block content %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div>{{ form_errors(form)}}</div>
+
+<div class="mb-3">
+  {{ form_label(form.code, 'Please enter the code', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.code, {'attr': {'class': 'form-control'}}) }}
+  {% if form.code.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.code.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.name, 'Please enter the post name', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+  {% if form.name.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.name.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.stock, 'Please enter the post stock', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.stock, {'attr': {'class': 'form-control'}}) }}
+ {% if form.stock.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.stock.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.price, 'Please enter the post price', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+  {% if form.price.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.price.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.producer, 'Please enter the post producer', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.producer, {'attr': {'class': 'form-select'}}) }} 
+   {% if form.producer.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.producer.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.discount, 'Please enter the post producer', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.discount, {'attr': {'class': 'form-select'}}) }} 
+   {% if form.producer.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.producer.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mb-3">
+  <button type="submit" class="btn btn-primary w-100">Save!</button>
+</div>
+
+{{ form_end(form) }}
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products{% endblock %}
+{% block bread %}
+ &#8594; Products
+{% endblock %}
+{% block body %}
+<main>
+
+<section class="d-flex flex-column flex-sm-row-reverse">
+<div class="col-12 col-md-9 d-flex flex-column">
+<div class="px-5">{{ include('/admin_panel/_header.html.twig') }}</div>
+<div class="mt-5 p-5">{{ include('product/_list.html.twig') }}</div>
+</div>
+<div class="col-3 d-none d-md-block">{{ include('/admin_panel/_side_menu.html.twig') }}</div>
+
+</section>
+<div class="">{{ include('/admin_panel/_footer.html.twig') }}</div>
+</main>
+
+
+
+{% endblock %}

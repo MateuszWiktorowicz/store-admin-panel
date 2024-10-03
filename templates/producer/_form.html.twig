@@ -1,0 +1,27 @@
+{% block content %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div>{{ form_errors(form)}}</div>
+
+
+<div class="mb-3">
+  {{ form_label(form.name, 'Please enter the producer name', {'label_attr': {'class': 'form-label'}}) }}
+  {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+  {% if form.name.vars.errors|length > 0 %}
+      <div class="text-danger mt-1">
+          {% for error in form.name.vars.errors %}
+              <p>{{ error.message }}</p>
+          {% endfor %}
+      </div>
+  {% endif %}
+</div>
+
+
+<div class="mb-3">
+  <button type="submit" class="btn btn-primary w-100">Save!</button>
+</div>
+
+{{ form_end(form) }}
+
+
+{% endblock %}
