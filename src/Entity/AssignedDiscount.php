@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\AssignedDiscountRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Mime\Message;
+use App\Validator\UniqueAssignedDiscount;
+use App\Repository\AssignedDiscountRepository;
 
 #[ORM\Entity(repositoryClass: AssignedDiscountRepository::class)]
+#[ORM\UniqueConstraint(name: 'unique_discount_user', columns: ['discount_id', 'user_id'])]
+#[UniqueAssignedDiscount]
 class AssignedDiscount
 {
     #[ORM\Id]
