@@ -2,10 +2,11 @@
 
 {% block title %}Orders{% endblock %}
 {% block bread %}
- &#8594; Orders
+<div class="bread"> &#8594; <a href="{{ path('app_order') }}">Orders</a></div>
 {% endblock %}
 {% block content %}
 
 {{ include('/order/_list.html.twig') }}
 
+<script src="{{ asset('build/order.js') }}"></script>
 {% endblock %}

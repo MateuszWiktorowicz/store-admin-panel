@@ -2,7 +2,7 @@
 
 {% block title %}Products{% endblock %}
 {% block bread %}
- &#8594; Products
+ <div>&#8594; <a href="{{ path('app_product') }}">Products</a></div>
 {% endblock %}
 {% block content %}
 {{ include('product/_bar.html.twig') }}

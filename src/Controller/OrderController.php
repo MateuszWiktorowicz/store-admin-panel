@@ -37,17 +37,28 @@ class OrderController extends AbstractController
         OrderRepository $orders
     ): Response {
         $isEdit = $order->getId() !== null;
+        $user = $order->getUser();
+        $oldStock = [];
+        foreach ($order->getOrderItems() as $orderItem) {
+            $oldStock[] = $orderItem->getQuantity();
+        }
 
         $form = $this->createForm(OrderType::class, $order, [
             'is_edit' => $isEdit
         ]);
         $form->handleRequest($request);
 
-        $user = $order->getUser();
+
+
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($order->getOrderItems() as $index => $orderItem) {
+                $order->stockUpdate($orderItem,  $oldStock[$index]);
+            }
             $order->setUser($user);
+
+            $order->setValue();
             $orders->add($order, true);
 
             $this->addFlash('success', 'Order and its items updated successfully.');
@@ -73,9 +84,12 @@ class OrderController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($form);
             $order = $form->getData();
 
+            foreach ($order->getOrderItems() as $orderItem) {
+                $order->stockUpdate($orderItem);
+            }
+            $order->setValue();
             $orders->add($order, true);
 
             $this->addFlash('success', 'Order added successfully.');
@@ -93,6 +107,12 @@ class OrderController extends AbstractController
         Order $order,
         OrderRepository $orders,
     ): Response {
+        $lastQuantity = 0;
+        foreach ($order->getOrderItems() as $orderItem) {
+            $lastQuantity = $orderItem->getQuantity();
+            $order->stockUpdate($orderItem, $lastQuantity, true);
+        };
+
 
 
         $orders->remove($order, true);

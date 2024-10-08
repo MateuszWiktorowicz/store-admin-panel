@@ -2,7 +2,7 @@
 
 {% block title %}Add Order{% endblock %}
 {% block bread %}
- &#8594; Orders  &#8594; Add order
+<div class="bread"> &#8594; <a href="{{ path('app_order') }}">Orders</a>  &#8594; Add order</div>
 {% endblock %}
 {% block content %}
 {{ form_start(form) }}
@@ -20,10 +20,40 @@
     </div>
     {% endfor %}
     </div>
-    <button type="button" class="add_item_link btn btn-primary" data-collection-holder-class="orderItems">Add a order item</button>
+    <button type="button" class="add_item_link btn btn-primary mb-3" data-collection-holder-class="orderItems">Add a order item</button>
     <div class="mb-3">
   <button type="submit" class="btn btn-primary w-100">Save!</button>
 </div>
 {{ form_end(form) }}
+   <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const collectionHolder = document.querySelector('.orderItems'); 
 
+
+            document.querySelector('.add_item_link').addEventListener("click", function() {
+                const index = collectionHolder.dataset.index++;
+
+
+                const prototype = collectionHolder.dataset.prototype.replace(/__name__/g, index);
+
+
+                const card = document.createElement('div');
+                card.className = 'card text-white bg-success mb-3';
+
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'card-header';
+                cardHeader.textContent = 'Order Item'; 
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                cardBody.innerHTML = prototype; 
+
+                card.appendChild(cardHeader);
+                card.appendChild(cardBody);
+
+   
+                collectionHolder.appendChild(card);
+            });
+        });
+    </script>
 {% endblock %}

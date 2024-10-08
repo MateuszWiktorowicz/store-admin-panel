@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\AssignedDiscountRepository;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -35,7 +37,11 @@ class Order
      * @var Collection<int, OrderItem>
      */
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'purchase', cascade: ['persist', 'remove'], orphanRemoval: true, fetch: 'EAGER')]
+    #[Assert\NotBlank()]
     private Collection $orderItems;
+
+    #[ORM\Column]
+    private ?float $value = null;
 
     public function getId(): ?int
     {
@@ -103,16 +109,56 @@ class Order
         return $this;
     }
 
-    public function getOrderValue(): float
+
+    public function getValue(): ?float
     {
+        return $this->value;
+    }
+
+    public function setValue(): static
+    {
+        $discountValue = 0;
         $total = 0;
 
         foreach ($this->getOrderItems() as $orderItem) {
+
+
             $price = $orderItem->getProduct()->getPrice();
             $quantity = $orderItem->getQuantity();
 
-            $total += $price * $quantity;
+            $discount = $orderItem->getProduct()->getDiscount();
+            if ($discount) {
+                $assignedDiscount = $orderItem->getPurchase()->getUser()->getAssignedDiscountValue($discount);
+
+                $discountValue =  $assignedDiscount ? $assignedDiscount->getValue() : 0;
+            }
+
+            $total += $price * (100 - $discountValue) / 100 * $quantity;
         }
-        return $total;
+
+
+        $this->value = $total;
+
+        return $this;
     }
+
+    public function stockUpdate(OrderItem $orderItem, $editedAmount = 0, $isDelete = false): static
+    {
+        $currentStock = $orderItem->getProduct()->getStock();
+
+        $currentStock += $editedAmount;
+
+        if (!$isDelete) {
+            $amount = $orderItem->getQuantity();
+            $currentStock -= $amount;
+        }
+
+        $orderItem->getProduct()->setStock($currentStock);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderItem>
+     */
 }

@@ -22,12 +22,12 @@ class Product
 
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min: 5, max: 255)]
+    #[Assert\Length(min: 1, max: 255)]
     private ?string $code = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min: 5, max: 255)]
+    #[Assert\Length(min: 1, max: 255)]
     private ?string $name = null;
 
     #[ORM\Column(nullable: true)]

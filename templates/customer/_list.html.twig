@@ -1,12 +1,7 @@
 {% block body %}
 
 <div class="d-flex justify-content-between">
-<div>Total customer: {{ customers|length }} </div>
-<div>
-  <form class="w-100 me-3" role="search">
-      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-    </form>
-</div>
+<div class="text-light">Total customers: {{ customers|length }} </div>
 <div>
 <a class="btn btn-outline-light text-decoration-none" href="{{ path('app_customer_add') }}">Add customer</a>
 </div>
@@ -20,6 +15,7 @@
       <th scope="col">Address</th>
       <th scope="col">Phone</th>
       <th scope="col">Nip</th>
+      <th scope="col">Orders</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -33,11 +29,12 @@
       <td>{{ customer.profile.address }}</td>
       <td>{{ customer.profile.phone }}</td>
       <td>{{ customer.profile.nip }}</td>
+      <td>{{ customer.orders.count }}</td>
       <td>
            <a class="btn btn-outline-primary me-2" href="{{ path('app_customer_edit', {id: customer.id}) }}"><i class="fas fa-cog"></i> </a>
            <a class="btn btn-outline-secondary me-2" href="{{ path('app_customer_profile', {id: customer.id}) }}"><i class="fas fa-user"></i></a>
            <a class="btn btn-outline-success me-2" href="{{ path('app_discount_assign', {user: customer.id}) }}"><i class="fas fa-dollar-sign"></i></a>
-          <a class="btn btn-outline-danger" href="{{ path('app_customer_delete', {id: customer.id}) }}"><i class="fas fa-trash"></i><a/> 
+          <a class="btn btn-outline-danger {{ customer.orders|length > 0 ? 'disabled' : '' }}" href="{{ path('app_customer_delete', {id: customer.id}) }}"><i class="fas fa-trash"></i><a/> 
       </td>
     </tr>
     {% endif %}

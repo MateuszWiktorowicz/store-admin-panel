@@ -1,7 +1,7 @@
 {% block body %}
 
 <div class="d-flex justify-content-between">
-<div>Total orders: {{ orders|length }}</div>
+<div class="text-light">Total orders: {{ orders|length }}</div>
 <div>
 <a class="btn btn-outline-light text-decoration-none" href="{{ path('app_order_add') }}">New Order</a>
 </div>
@@ -30,7 +30,7 @@
       <td>{{ order.user.profile.address }}</td>
       <td>{{ order.user.profile.phone }}</td>
       <td>{{ order.user.email }}</td>
-      <td>{{ order.getOrderValue() }}</td>
+      <td>{{ order.getValue() }}</td>
       <td>{{ order.date|date('Y-m-d') }}</td>
       <td>
         <a class="btn btn-outline-info me-2" href="{{ path('app_order_info', {id: order.id}) }}"><i class="fas fa-info-circle"></i></a>

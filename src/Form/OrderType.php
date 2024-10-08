@@ -17,7 +17,7 @@ class OrderType extends AbstractType
         $builder
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'profile.companyName',
+                'choice_label' => 'email',
                 'disabled' => $options['is_edit']
             ])
             ->add('orderItems', CollectionType::class, [
