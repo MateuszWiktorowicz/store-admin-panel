@@ -1,0 +1,41 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/styles/app.css ***!
+  \**************************************************************************************************************/
+body {
+    width: 98%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bread a:hover {
+    color: #334b49 !important;
+}
+
+.bg-primary {
+    background-color: #334b49 !important;
+}
+
+.bg-section {
+    background-color:#8b72722b !important;
+}
+
+.bg-secondary {
+    background-color: #95b1ae !important;
+}
+
+.list-group-item a {
+    color: inherit; 
+}
+
+.list-group-item:hover {
+    background-color: #334b49 !important;
+    color: white !important;
+}
+
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtJQUNJLFVBQVU7SUFDVixjQUFjO0FBQ2xCOztBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSx5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSxvQ0FBb0M7QUFDeEM7O0FBRUE7SUFDSSxxQ0FBcUM7QUFDekM7O0FBRUE7SUFDSSxvQ0FBb0M7QUFDeEM7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksb0NBQW9DO0lBQ3BDLHVCQUF1QjtBQUMzQiIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLmNzcyJdLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcclxuICAgIHdpZHRoOiA5OCU7XHJcbiAgICBtYXJnaW46IDAgYXV0bztcclxufVxyXG5cclxuYSB7XHJcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgICBjb2xvcjogaW5oZXJpdDtcclxufVxyXG5cclxuLmJyZWFkIGE6aG92ZXIge1xyXG4gICAgY29sb3I6ICMzMzRiNDkgIWltcG9ydGFudDtcclxufVxyXG5cclxuLmJnLXByaW1hcnkge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzMzNGI0OSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uYmctc2VjdGlvbiB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiM4YjcyNzIyYiAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uYmctc2Vjb25kYXJ5IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM5NWIxYWUgIWltcG9ydGFudDtcclxufVxyXG5cclxuLmxpc3QtZ3JvdXAtaXRlbSBhIHtcclxuICAgIGNvbG9yOiBpbmhlcml0OyBcclxufVxyXG5cclxuLmxpc3QtZ3JvdXAtaXRlbTpob3ZlciB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM0YjQ5ICFpbXBvcnRhbnQ7XHJcbiAgICBjb2xvcjogd2hpdGUgIWltcG9ydGFudDtcclxufVxyXG5cclxuIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9*/

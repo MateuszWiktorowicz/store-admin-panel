@@ -1,12 +1,8 @@
 {% block body %}
 
 <div class="d-flex justify-content-between">
-<div>Total producers: {{ producersCount }} </div>
-<div>
-  <form class="w-100 me-3" role="search">
-      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-    </form>
-</div>
+<div class="text-light">Total producers: {{ producersCount }} </div>
+
 <div>
 <a class="btn btn-outline-light text-decoration-none" href="{{ path('app_producer_add') }}">Add producer</a>
 </div>

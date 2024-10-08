@@ -2,7 +2,7 @@
 
 {% block title %}Add Discount{% endblock %}
 {% block bread %}
- &#8594; Discounts  &#8594; Add discount
+<div class="bread"> &#8594; <a href="{{ path('app_discount') }}">Discounts</a>  &#8594; Edit discount</div>
 {% endblock %}
 {% block content %}
 {{ form_start(form) }}

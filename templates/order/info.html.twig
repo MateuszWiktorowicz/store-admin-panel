@@ -2,7 +2,7 @@
 
 {% block title %}Order{% endblock %}
 {% block bread %}
- &#8594; Orders
+<div class="bread"> &#8594; <a href="{{ path('app_order') }}">Orders</a>&#8594; <a href="{{ path('app_order_edit', {id: order.id}) }}">Order</a></div>
 {% endblock %}
 {% block content %}
 
@@ -32,7 +32,7 @@
       <td>{{ order.user.profile.address }}</td>
       <td>{{ order.user.profile.phone }}</td>
       <td>{{ order.user.email }}</td>
-      <td>{{ order.getOrderValue() }}</td>
+      <td>{{ order.getValue() }}</td>
       <td>{{ order.date|date('Y-m-d H:i:s') }}</td>
     </tr>
   </tbody>
@@ -49,6 +49,7 @@
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">Value</th>
+      <th scope="col">Discounted Value</th>
     </tr>
   </thead>
   <tbody>
@@ -60,7 +61,19 @@
       <td>{{ orderItem.quantity }}</td>
       <td>{{ orderItem.product.price }}</td>
       <td>{{ orderItem.product.price * orderItem.quantity }}</td>
-    </tr>
+      {% set discountGroup = orderItem.product.discount %}
+      {% if discountGroup %}
+    {% set assignedDiscountValue = orderItem.purchase.user.getAssignedDiscountValue(discountGroup) %}
+    {% if assignedDiscountValue is not null %}
+        {% set discountValue = assignedDiscountValue.getValue() %}
+        <td>{{ orderItem.product.price * orderItem.quantity * (100 - discountValue) / 100 }}</td>
+    {% else %}
+        <td>{{ orderItem.product.price * orderItem.quantity }}</td>
+    {% endif %}
+      {% else %}
+          <td>{{ orderItem.product.price * orderItem.quantity }}</td>
+    {% endif %}
+</tr>
     {% endfor %}
     <tr>
     <th scope="row"></th>
@@ -68,7 +81,8 @@
       <td></td>
       <td></td>
       <td></td>
-      <td class="bg-info">{{ order.getOrderValue() }}</td>
+      <td></td>
+      <td class="bg-info">{{ order.getValue() }}</td>
     </tr>
   </tbody>
 </table>

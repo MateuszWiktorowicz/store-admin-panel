@@ -2,7 +2,7 @@
 
 {% block title %}Add Producer{% endblock %}
 {% block bread %}
- &#8594; Producer &#8594; Add Producer
+ <div>&#8594; <a href="{{ path('app_producer') }}">Producers</a> &#8594; Add Producer</div>
 {% endblock %}
 {% block content %}
 {{ include('producer/_form.html.twig') }}

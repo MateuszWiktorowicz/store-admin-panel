@@ -33,6 +33,25 @@ class OrderRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function getTodayOrders(): array
+    {
+
+        $today = new \DateTime();
+        $today->setTime(0, 0, 0);
+
+
+        $endOfToday = new \DateTime();
+        $endOfToday->setTime(23, 59, 59);
+
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.date >= :startOfDay')
+            ->andWhere('o.date <= :endOfDay')
+            ->setParameter('startOfDay', $today)
+            ->setParameter('endOfDay', $endOfToday)
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Order[] Returns an array of Order objects
     //     */

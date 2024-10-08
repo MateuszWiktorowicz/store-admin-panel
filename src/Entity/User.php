@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\AssignedDiscountRepository;
 use App\Repository\DiscountRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Expr\Value;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -210,5 +212,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getAssignedDiscountValue(Discount $discount): ?AssignedDiscount
+    {
+
+        foreach ($this->getAssignedDiscounts() as $assignedDiscount) {
+
+            if ($assignedDiscount->getDiscount() === $discount) {
+                return $assignedDiscount;
+            }
+        }
+
+        return null;
     }
 }

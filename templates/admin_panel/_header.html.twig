@@ -1,29 +1,25 @@
 {% block body %}
 <header class="py-3 mb-3 border-bottom bg-secondary rounded-3">
     <div class="container-fluid d-flex gap-3 align-items-center justify-content-center justify-content-md-end">
-      <div class="dropdown d-md-none">
+      <div class="dropdown d-lg-none">
         <a href="#" class="d-flex align-items-end col-lg-4 pt-2 mb-2 mb-lg-0 link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-bars" style="font-size: 30px;"></i>
         </a>
         <ul class="dropdown-menu text-small shadow">
           <li><a class="dropdown-item active" href="#" aria-current="page">Dashboard</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Products</a></li>
-          <li><a class="dropdown-item" href="#">Producers</a></li>
-          <li><a class="dropdown-item" href="#">Stock</a></li>
+          <li><a class="dropdown-item" href="{{ path('app_product') }}">Products</a></li>
+          <li><a class="dropdown-item" href="{{ path('app_producer') }}">Producers</a></li>
+          <li><a class="dropdown-item" href="{{ path('app_discount') }}">Discount Groups</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Order List</a></li>
-          <li><a class="dropdown-item" href="#">Discount Groups</a></li>
+          <li><a class="dropdown-item" href="{{ path('app_order') }}">Order List</a></li>
+
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Customer List</a></li>
-          <li><a class="dropdown-item" href="#">Customer Groups</a></li>
+          <li><a class="dropdown-item" href="{{ path('app_customer') }}">Customer List</a></li>
         </ul>
       </div>
 
       <div class="d-flex align-items-center">
-        <form class="w-100 me-3" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
 
         <div class="flex-shrink-0 dropdown">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

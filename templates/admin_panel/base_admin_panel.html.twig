@@ -4,11 +4,13 @@
 <main>
 
 <section class="d-flex flex-column flex-sm-row-reverse p-3">
-<div class="col-12 col-md-10 d-flex flex-column p-4 bg-section rounded-end-3">
-<div class="px-5">{{ include('/admin_panel/_header.html.twig') }}</div>
+<div class="col-12 col-lg-10 d-flex flex-column p-4 bg-section rounded-end-3">
+{% block bread %}
+{% endblock %}
+<div class="px-5 mt-3">{{ include('/admin_panel/_header.html.twig') }}</div>
 <div class="bg-secondary p-3 rounded-3">{% block content %}{% endblock %}</div>
 </div>
-<div class="col-2 d-none d-md-block">{{ include('/admin_panel/_side_menu.html.twig') }}</div>
+<div class="col-2 d-none d-lg-block">{{ include('/admin_panel/_side_menu.html.twig') }}</div>
 
 </section>
 <div class="">{{ include('/admin_panel/_footer.html.twig') }}</div>

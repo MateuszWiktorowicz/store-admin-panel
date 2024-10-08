@@ -3,6 +3,24 @@ body {
     margin: 0 auto;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.row {
+    margin: 0 !important;
+}
+
+.card {
+    background-color: #334b49 !important;
+}
+
+.bread a:hover {
+    color: #334b49 !important;
+}
+
 .bg-primary {
     background-color: #334b49 !important;
 }

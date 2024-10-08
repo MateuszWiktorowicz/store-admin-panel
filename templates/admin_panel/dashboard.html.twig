@@ -1,23 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_panel/base_admin_panel.html.twig' %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Admin Panel{% endblock %}
 {% block bread %}
- &#8594; Products
+ <div class="bread"> &#8594; <a href="{{ path('app_admin_panel') }}">Dasboard</a></div>
 {% endblock %}
-{% block body %}
-<main>
+{% block content %}
 
-<section class="d-flex flex-column flex-sm-row-reverse">
-<div class="col-12 col-md-9 d-flex flex-column">
-<div class="px-5">{{ include('/admin_panel/_header.html.twig') }}</div>
-<div class="mt-5 p-5">{{ include('product/_list.html.twig') }}</div>
+<div class="border border-light-subtle d-container">
+    <div class="row">
+        <div class="border border-light-subtle text-center col-12 col-md-6 p-3">
+        <h3>Today orders</h3> 
+        <p class="fs-4 text-white">{{ todayOrders|length }}</p>
+        </div>
+        {% set todayValue = 0 %}
+        {% for todayOrder in todayOrders %}
+            {% set todayValue = todayValue + todayOrder.value %}
+        {% endfor %}
+        <div class="border border-light-subtle text-center col-12 col-md-6 p-3">
+        <h3>Today orders value</h3>
+        <p class="fs-4 text-white">{{ todayValue }} PLN</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="border border-light-subtle text-center col-12 col-md-6 p-3">
+        <h3>Total orders</h3> 
+        <p class="fs-4 text-white">{{ orders|length }} </p>
+        </div>
+        {% set totalValue = 0 %}
+        {% for order in orders %}
+            {% set totalValue = totalValue + order.value %}
+        {% endfor %}
+        <div class="border border-light-subtle text-center col-12 col-md-6 p-3">
+        <h3>Total orders value</h3>
+        <p class="fs-4 text-white">{{ totalValue }} PLN</p>
+        </div>
+    </div>
 </div>
-<div class="col-3 d-none d-md-block">{{ include('/admin_panel/_side_menu.html.twig') }}</div>
-
-</section>
-<div class="">{{ include('/admin_panel/_footer.html.twig') }}</div>
-</main>
-
-
 
 {% endblock %}

@@ -34,7 +34,6 @@
         "symfony/runtime": "7.1.*",
         "symfony/security-bundle": "7.1.*",
         "symfony/serializer": "7.1.*",
-        "symfony/stimulus-bundle": "^2.20",
         "symfony/string": "7.1.*",
         "symfony/translation": "7.1.*",
         "symfony/twig-bundle": "7.1.*",
@@ -106,5 +105,11 @@
         "symfony/stopwatch": "7.1.*",
         "symfony/var-dumper": "7.1.*",
         "symfony/web-profiler-bundle": "7.1.*"
+    },
+    "repositories": {
+        "symfony-ux": {
+            "type": "composer",
+            "url": "https://assets.symfony.com/packages/ux/"
+        }
     }
 }
