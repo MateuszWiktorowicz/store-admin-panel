@@ -31,10 +31,10 @@
       <td>{{ customer.profile.nip }}</td>
       <td>{{ customer.orders.count }}</td>
       <td>
-           <a class="btn btn-outline-primary btn-sm m-1" href="{{ path('app_customer_edit', {id: customer.id}) }}"><i class="fas fa-cog"></i> </a>
-           <a class="btn btn-outline-secondary btn-sm m-1" href="{{ path('app_customer_profile', {id: customer.id}) }}"><i class="fas fa-user"></i></a>
-           <a class="btn btn-outline-success btn-sm m-1" href="{{ path('app_discount_assign', {user: customer.id}) }}"><i class="fas fa-dollar-sign"></i></a>
-          <a class="btn btn-outline-danger btn-sm m-1{{ customer.orders|length > 0 ? 'disabled' : '' }}" href="{{ path('app_customer_delete', {id: customer.id}) }}"><i class="fas fa-trash"></i><a/> 
+           <a class="btn btn-outline-primary btn-sm m-1 " href="{{ path('app_customer_edit', {id: customer.id}) }}"><i class="fas fa-cog"></i> </a>
+           <a class="btn btn-outline-secondary btn-sm m-1 " href="{{ path('app_customer_profile', {id: customer.id}) }}"><i class="fas fa-user"></i></a>
+           <a class="btn btn-outline-success btn-sm m-1"  href="{{ path('app_discount_assign', {user: customer.id}) }}"><i class="fas fa-dollar-sign"></i></a>
+          <a class="btn btn-outline-danger btn-sm m-1 {{ customer.orders|length > 0 ? 'disabled' : '' }}" href="{{ path('app_customer_delete', {id: customer.id}) }}"><i class="fas fa-trash"></i><a/> 
       </td>
     </tr>
     {% endif %}
