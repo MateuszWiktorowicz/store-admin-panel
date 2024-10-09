@@ -3,15 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Entity\OrderItem;
 use App\Form\OrderType;
+use App\Entity\OrderItem;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_ADMIN')]
 class OrderController extends AbstractController
 {
     #[Route('/admin-panel/orders', name: 'app_order')]

@@ -3,7 +3,9 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Entity\UserProfile;
 use App\Repository\UserRepository;
+use App\Repository\UserProfileRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -21,7 +23,7 @@ class CreateUserCommand extends Command
 {
     public function __construct(
         private UserPasswordHasherInterface $userPasswordHasher,
-        private UserRepository $users
+        private UserRepository $users,
     ) {
         parent::__construct();
     }
@@ -41,9 +43,11 @@ class CreateUserCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
+        $profile = new UserProfile();
 
         $user = new User();
         $user->setEmail($email);
+        $user->setProfile($profile);
         $user->setPassword(
             $this->userPasswordHasher->hashPassword($user, $password)
         );

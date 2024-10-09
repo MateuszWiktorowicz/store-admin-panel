@@ -5,16 +5,18 @@ namespace App\Controller;
 use App\Entity\Discount;
 use App\Entity\Producer;
 use App\Form\ProducerType;
+use Doctrine\ORM\EntityManager;
+use Doctrine\DBAL\Types\TextType;
 use App\Repository\DiscountRepository;
 use App\Repository\ProducerRepository;
-use Doctrine\DBAL\Types\TextType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_ADMIN')]
 class ProducerController extends AbstractController
 {
     #[Route('/admin-panel/producers', name: 'app_producer')]

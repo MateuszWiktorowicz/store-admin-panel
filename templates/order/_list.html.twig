@@ -33,9 +33,9 @@
       <td>{{ order.getValue() }}</td>
       <td>{{ order.date|date('Y-m-d') }}</td>
       <td>
-        <a class="btn btn-outline-info me-2" href="{{ path('app_order_info', {id: order.id}) }}"><i class="fas fa-info-circle"></i></a>
-        <a class="btn btn-outline-primary me-2" href="{{ path('app_order_edit', {id: order.id}) }}"><i class="fas fa-cog"></i> </a>
-        <a class="btn btn-outline-danger" href="{{ path('app_order_delete', {id: order.id}) }}"><i class="fas fa-trash"></i><a/>
+        <a class="btn btn-outline-info btn-sm m-1" href="{{ path('app_order_info', {id: order.id}) }}"><i class="fas fa-info-circle"></i></a>
+        <a class="btn btn-outline-primary btn-sm m-1" href="{{ path('app_order_edit', {id: order.id}) }}"><i class="fas fa-cog"></i> </a>
+        <a class="btn btn-outline-danger btn-sm m-1" href="{{ path('app_order_delete', {id: order.id}) }}"><i class="fas fa-trash"></i><a/>
 
       </td>
     </tr>
