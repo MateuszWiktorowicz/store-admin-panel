@@ -1,7 +1,7 @@
 {%  block body %}
 <div class="container bg-primary rounded-start-3 p-3">
 <div class="mb-5"><h1 class="h4 text-white">B2B e-store</h1></div>
-<div class="mb-4"><h2 class="h5 text-white">Dashboard</h2></div>
+ <div class="mb-4"><a class="h5 text-white text-decoration-none" href="{{ path('app_admin_panel') }}">Dashboard</a></div>
 <div class="mb-4">
     <h2 class="h5 text-white">Products</h2>
     <ul class="list-group">
@@ -24,7 +24,6 @@
     <li class="list-group-item"><a class="text-decoration-none" href="{{ path('app_customer') }}">Customer List</a></li>
     </ul>
 </div>
-<div class="mb-4"><h2 class="h5 text-white">Settings</h2></div>
 
 </div>
 {% endblock %}

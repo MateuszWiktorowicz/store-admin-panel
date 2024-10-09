@@ -25,9 +25,8 @@
       <td>{{ discount.products.count }}</td>
       <td>{{ discount.assignedDiscounts.count }}</td>
       <td>
-        {# <a class="btn btn-outline-primary me-2" href="{{ path('app_discount_assign', {id: discount.id}) }}"><i class="fas fa-user"></i> </a>#}
-        <a class="btn btn-outline-primary me-2" href="{{ path('app_discount_edit', {id: discount.id}) }}"><i class="fas fa-cog"></i> </a>
-        <a class="btn btn-outline-danger" href="{{ path('app_discount_delete', {id: discount.id}) }}"><i class="fas fa-trash"></i><a/> 
+        <a class="btn btn-outline-primary btn-sm m-1" href="{{ path('app_discount_edit', {id: discount.id}) }}"><i class="fas fa-cog"></i> </a>
+        <a class="btn btn-outline-danger btn-sm m-1" href="{{ path('app_discount_delete', {id: discount.id}) }}"><i class="fas fa-trash"></i><a/> 
       </td>
     </tr>
     {% endif %}
